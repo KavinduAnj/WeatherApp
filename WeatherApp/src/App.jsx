@@ -20,7 +20,16 @@ const App = () => {
       {/* Weather Section */}
       <div className="weather-section">
         <div className="current-weather">
-          <img src="" alt="weather-icon" className='weather-icon' />
+          <img src="icons/clouds.svg" alt="weather-icon" className='weather-icon' />
+          <h2 className="temperature">20 <span>°C</span></h2>
+          <p className="description">Partly Cloudy</p>
+        </div>
+        <div className="hourly-forcast">
+          <ul className="weather-list">
+            <li className="weather-item">
+              <p className="time">00:00</p>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
