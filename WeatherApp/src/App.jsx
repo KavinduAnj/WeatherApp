@@ -26,7 +26,7 @@ const App = () => {
         </div>
 
         {/* Hourly Forecast Section */}
-        <div className="hourly-forcast">
+        <div className="hourly-forecast">
           <ul className="weather-list">
             <li className="weather-item">
               <p className="time">00:00</p>
