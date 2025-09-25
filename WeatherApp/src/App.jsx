@@ -53,6 +53,11 @@ const App = () => {
               <img src="icons/clouds.svg" alt="weather-icon" className='weather-icon' />
               <p className="temp">20<span>°C</span></p>
             </li>
+             <li className="weather-item">
+              <p className="time">00:00</p>
+              <img src="icons/clouds.svg" alt="weather-icon" className='weather-icon' />
+              <p className="temp">20<span>°C</span></p>
+            </li>
           </ul>
         </div>
       </div>
