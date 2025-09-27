@@ -1,14 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
+
 import SearchSection from './components/SearchSection'
 import CurrentWeather from './components/CurrentWeather'
 import HourlyWeatherItem from './components/HourlyWeatherItem'
 
 const App = () => {
+  const [currentWeather, setCurrentWeather] = useState({});
   const getWeatherDetails = async (API_URL) => {
    try{
     const response = await fetch(API_URL);
     const data = await response.json();
-    console.log(data);
+    const temperature = Math.floor(data.current.temp_c);
+    const description = data.current.condition.text;
+
+    setCurrentWeather({temperature, description});
    } catch(error){
     console.log(error); 
    }
@@ -21,7 +26,7 @@ const App = () => {
 
       {/* Weather Section */}
       <div className="weather-section">
-        <CurrentWeather />
+        <CurrentWeather currentWeather={currentWeather}/>
 
         {/* Hourly Forecast Section */}
         <div className="hourly-forecast">

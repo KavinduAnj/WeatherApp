@@ -1,11 +1,11 @@
 import React from 'react'
 
-const CurrentWeather = () => {
+const CurrentWeather = ({currentWeather}) => {
   return (
     <div className="current-weather">
           <img src="icons/clouds.svg" alt="weather-icon" className='weather-icon' />
-          <h2 className="temperature">20 <span>°C</span></h2>
-          <p className="description">Partly Cloudy</p>
+          <h2 className="temperature"> {currentWeather.temperature} <span>°C</span></h2>
+          <p className="description">{currentWeather.description}</p>
         </div>
   )
 }
