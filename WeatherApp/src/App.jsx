@@ -1,21 +1,12 @@
 import React from 'react'
+import SearchSection from './components/SearchSection'
 
 const App = () => {
   return (
     <div className='container'>
 
       {/* Search Section */}
-      <div className='search-section'>
-        <form action="#" className='search-form'>
-          <span className="material-symbols-rounded">
-            search
-          </span>
-          <input type="search" placeholder='Enter city name' className='search-input' required />
-        </form>
-        <button className="location-button">
-          <span className="material-symbols-rounded">my_location</span>
-        </button>
-      </div>
+      <SearchSection />
 
       {/* Weather Section */}
       <div className="weather-section">
