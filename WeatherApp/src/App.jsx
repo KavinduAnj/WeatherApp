@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import SearchSection from './components/SearchSection'
 import CurrentWeather from './components/CurrentWeather'
 import HourlyWeatherItem from './components/HourlyWeatherItem'
+import { weatherCodes } from './constants'
 
 const App = () => {
   const [currentWeather, setCurrentWeather] = useState({});
@@ -12,8 +13,9 @@ const App = () => {
     const data = await response.json();
     const temperature = Math.floor(data.current.temp_c);
     const description = data.current.condition.text;
+    const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(data.current.condition.code));
 
-    setCurrentWeather({temperature, description});
+    setCurrentWeather({temperature, description, weatherIcon });
    } catch(error){
     console.log(error); 
    }
