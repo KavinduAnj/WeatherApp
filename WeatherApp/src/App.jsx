@@ -11,8 +11,11 @@ const App = () => {
    try{
     const response = await fetch(API_URL);
     const data = await response.json();
+     //temperature
     const temperature = Math.floor(data.current.temp_c);
+     //text
     const description = data.current.condition.text;
+     //weather-icon
     const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(data.current.condition.code));
 
     setCurrentWeather({temperature, description, weatherIcon });
