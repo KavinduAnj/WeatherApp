@@ -19,6 +19,7 @@ const App = () => {
     const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(data.current.condition.code));
 
     setCurrentWeather({temperature, description, weatherIcon });
+    console.log(data);
    } catch(error){
     console.log(error); 
    }
