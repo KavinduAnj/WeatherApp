@@ -16,6 +16,8 @@ const App = () => {
     const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(data.current.condition.code));
 
     setCurrentWeather({temperature, description, weatherIcon });
+    //hourly data from two days
+    const combinedHourlyData = [...data.forcast.forecastday[0].hour,...data.forcast.forecastday[1].hour];
     console.log(data);
    } catch(error){
     console.log(error); 
