@@ -21,7 +21,7 @@ const App = () => {
     setCurrentWeather({temperature, description, weatherIcon });
     //hourly data from two days
     const combinedHourlyData = [...data.forcast.forecastday[0].hour,...data.forcast.forecastday[1].hour];
-    console.log(data);
+    filterHourlyForecast(combinedHourlyData);
    } catch(error){
     console.log(error); 
    }
