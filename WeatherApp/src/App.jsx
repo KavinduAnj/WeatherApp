@@ -7,6 +7,7 @@ import { weatherCodes } from './constants'
 
 const App = () => {
   const [currentWeather, setCurrentWeather] = useState({});
+  const [hourlyForecasts, setHourlyForecasts] = useState([]);
 
   const filterHourlyForecast = (hourlyData) => {
 
@@ -51,8 +52,9 @@ const App = () => {
         {/* Hourly Forecast Section */}
         <div className="hourly-forecast">
           <ul className="weather-list">
-            <HourlyWeatherItem />
-           
+            {hourlyForecasts.map((hourlyWeather) => (
+            <HourlyWeatherItem key={hourlyWeather.time_epoch} hourlyWeather = {hourlyWeather} />
+            ))}
           </ul>
         </div>
       </div>
