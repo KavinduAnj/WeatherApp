@@ -7,6 +7,18 @@ import { weatherCodes } from './constants'
 
 const App = () => {
   const [currentWeather, setCurrentWeather] = useState({});
+
+  const filterHourlyForecast = (hourlyData) => {
+
+    const currentHour = new Date().setMinutes(0, 0, 0);
+    const next24Hours = currentHour + 24 * 60 * 60 * 1000;
+
+    const next24HoursData = hourlyData.filter(({time}) => {
+    const forecastTime = new Date(time).getTime();
+    return forecastTime >= currentHour && forecastTime <= next24Hours;
+    });
+    console.log(next24HoursData);
+  };
   const getWeatherDetails = async (API_URL) => {
    try{
     const response = await fetch(API_URL);
@@ -19,7 +31,9 @@ const App = () => {
     const weatherIcon = Object.keys(weatherCodes).find(icon => weatherCodes[icon].includes(data.current.condition.code));
 
     setCurrentWeather({temperature, description, weatherIcon });
-    console.log(data);
+    //hourly data from two days
+    const combinedHourlyData = [...data.forecast.forecastday[0].hour,...data.forecast.forecastday[1].hour];
+    filterHourlyForecast(combinedHourlyData);
    } catch(error){
     console.log(error); 
    }
