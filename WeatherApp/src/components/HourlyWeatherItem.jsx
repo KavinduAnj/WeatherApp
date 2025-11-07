@@ -3,18 +3,34 @@ import { weatherCodes } from '../constants'
 
 const HourlyWeatherItem = ({ hourlyWeather }) => {
   if (!hourlyWeather || !hourlyWeather.condition) {
-    return null;
+    return null; // Skip if data missing
   }
 
   const temperature = Math.floor(hourlyWeather.temp_c);
-  const time = hourlyWeather.time;
+
+  // Extract and format date + time
+  const dateObj = new Date(hourlyWeather.time);
+  const monthDate = dateObj.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  });
+  const time = dateObj.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
+  });
+
   const weatherIcon = Object.keys(weatherCodes).find(
     icon => weatherCodes[icon].includes(hourlyWeather.condition.code)
   );
 
   return (
     <li className="weather-item">
-      <p className="time">{time}</p>
+      <p className="time">
+        {monthDate}
+        <br /> {/* 🆕 Break line for time */}
+        {time}
+      </p>
       {weatherIcon && (
         <img
           src={`icons/${weatherIcon}.svg`}
@@ -24,7 +40,7 @@ const HourlyWeatherItem = ({ hourlyWeather }) => {
       )}
       <p className="temperature">{temperature}°</p>
     </li>
-  )
-}
+  );
+};
 
 export default HourlyWeatherItem;
