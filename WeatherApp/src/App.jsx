@@ -18,7 +18,7 @@ const App = () => {
     const forecastTime = new Date(time).getTime();
     return forecastTime >= currentHour && forecastTime <= next24Hours;
     });
-    console.log(next24HoursData);
+    setHourlyForecasts(next24HoursData);
   };
   const getWeatherDetails = async (API_URL) => {
    try{
