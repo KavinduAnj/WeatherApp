@@ -8,13 +8,16 @@ const HourlyWeatherItem = ({ hourlyWeather }) => {
 
   const temperature = Math.floor(hourlyWeather.temp_c);
 
-  // Format: "Nov 7, 1 PM"
-  const date = new Date(hourlyWeather.time);
-  const formattedDate = date.toLocaleString('en-US', {
-    month: 'short',   // e.g. Nov
-    day: 'numeric',   // e.g. 7
-    hour: 'numeric',  // e.g. 1
-    hour12: true      // 12-hour format with AM/PM
+  // Extract and format date + time
+  const dateObj = new Date(hourlyWeather.time);
+  const monthDate = dateObj.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric'
+  });
+  const time = dateObj.toLocaleString('en-US', {
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true
   });
 
   const weatherIcon = Object.keys(weatherCodes).find(
@@ -23,7 +26,11 @@ const HourlyWeatherItem = ({ hourlyWeather }) => {
 
   return (
     <li className="weather-item">
-      <p className="time">{formattedDate}</p>
+      <p className="time">
+        {monthDate}
+        <br /> {/* 🆕 Break line for time */}
+        {time}
+      </p>
       {weatherIcon && (
         <img
           src={`icons/${weatherIcon}.svg`}
